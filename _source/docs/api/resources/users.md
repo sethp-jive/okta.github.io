@@ -1713,6 +1713,28 @@ curl -v -X POST \
 }
 ~~~
 
+### Clear User Sessions
+{:.api .api-operation}
+
+<span class="api-uri-template api-uri-delete"><span class="api-label">DELETE</span> /users/*:id*/sessions</span>
+
+Clears active Okta sessions for the specified user in your Okta organization
+
+#### Request Example
+~~~sh
+curl -v -X DELETE \
+-H "Accept: application/json" \
+-H "Content-Type: application/json" \
+-H "Authorization: SSWS ${api_token}" \
+'https://${org}.okta.com/api/v1/users/00u0abcdefGHIJKLMNOP/sessions'
+~~~
+
+#### Response Example
+~~~sh
+> HTTP/1.1 204 No Content
+> Content-Length: 0
+~~~
+
 ## Related Resources
 
 ### Get Assigned App Links
