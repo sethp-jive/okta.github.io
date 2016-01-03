@@ -410,3 +410,95 @@ curl -v -X DELETE \
 ~~~ http
 HTTP/1.1 204 No Content
 ~~~
+
+
+#### Get session for current user
+{:.api .api-operation}
+
+<span class="api-uri-template api-uri-get"><span class="api-label">GET</span> /sessions/me</span>
+<span class="api-label api-label-cors pull-right"><i class="fa fa-cloud-download"></i> CORS</span>
+
+
+Get session information for the current user. Use this method in a browser based application to determine if the user is logged in.
+
+##### Request Example
+{:.api .api-request .api-request-example}
+
+~~~ sh
+curl -v -X GET \
+-H "Cookie: sid=${okta_session_id}"
+"https://${org}.okta.com/api/v1/sessions/me"
+~~~
+
+##### Response Example
+{:.api .api-response .api-response-example}
+
+~~~ json
+{
+    "_links": {
+        "refresh": {
+            "hints": {
+                "allow": [
+                    "POST"
+                ]
+            },
+            "href": "https://example.okta.com/api/v1/sessions/012a34BCDeFGhi56jklMNO_pQ/lifecycle/refresh"
+        },
+        "self": {
+            "hints": {
+                "allow": [
+                    "GET",
+                    "DELETE"
+                ]
+            },
+            "href": "https://example.okta.com/api/v1/sessions/012a34BCDeFGhi56jklMNO_pQ"
+        },
+        "user": {
+            "hints": {
+                "allow": [
+                    "GET",
+                    "POST"
+                ]
+            },
+            "href": "https://example.okta.com/api/v1/users/me",
+            "name": "Isaac Brock",
+        }
+    },
+    "amr": [
+        "pwd"
+    ],
+    "expiresAt": "2016-01-03T09:13:17.000Z",
+    "id": "012a34BCDeFGhi56jklMNO_pQ",
+    "idp": {
+        "id": "01a2bcdef3GHIJKLMNOP",
+        "type": "OKTA"
+    },
+    "lastFactorVerification": "2015-10-28T23:40:53.000Z",
+    "lastPasswordVerification": "2016-01-03T07:02:00.000Z",
+    "mfaActive": true,
+    "status": "ACTIVE",
+    "userId": "00u0abcdefGHIJKLMNOP"
+}
+~~~
+
+<!--
+### Close session for current user
+{:.api .api-request .api-request-example}
+
+<span class="api-uri-template api-uri-delete"><span class="api-label">DELETE</span> /sessions/me</span>
+<span class="api-label api-label-cors pull-right"><i class="fa fa-cloud-download"></i> CORS</span>
+
+~~~ sh
+curl -v -X DELETE \
+-H "Accept: application/json" \
+-H "Cookie: sid=${okta_session_id}" \
+"https://${org}.okta.com/api/v1/sessions/me"
+~~~
+
+##### Response Example
+{:.api .api-response .api-response-example}
+
+~~~ http
+HTTP/1.1 204 No Content
+~~~
+-->
