@@ -210,6 +210,10 @@
 
 <h2 id="media-types">Media Types</h2>
 
+<blockquote>
+  <p>JSON responses, including errors, may contain user input. To help prevent potential cross-site scripting attacks, make sure to properly escape all values before use in a browser or any HTML context.</p>
+</blockquote>
+
 <p>The API currently only supports JSON as an exchange format.  Be sure to set both the Content-Type and Accept headers for every request as <code class="highlighter-rouge">application/json</code>.</p>
 
 <p>All Date objects are returned in <a href="https://tools.ietf.org/html/rfc3339">ISO 8601 format</a>:</p>
@@ -270,6 +274,10 @@ with no <code class="highlighter-rouge">body</code> param, be sure to set the <c
 </blockquote>
 
 <h2 id="errors">Errors</h2>
+
+<blockquote>
+  <p>JSON responses, including errors, may contain user input. To help prevent potential cross-site scripting attacks, make sure to properly escape all values before use in a browser or any HTML context.</p>
+</blockquote>
 
 <p>All requests on success will return a 200 status if there is content to return or a 204 status if there is no content to return.</p>
 

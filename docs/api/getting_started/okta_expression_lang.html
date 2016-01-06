@@ -185,7 +185,7 @@
 <p>When you create an Okta expression, you can reference any attribute that lives on an Okta user profile or App user profile.</p>
 
 <h3 id="okta-user-profile">Okta user profile</h3>
-<p>Every user has an Okta user profile.  The Okta user profile is the central source of truth for a user’s core attributes.  To reference an Okta user profile attribute, just reference <code class="highlighter-rouge">user</code> and specify the attribute variable name.</p>
+<p>Every user has an Okta user profile.  The Okta user profile is the central source of truth for a user’s core attributes.  To reference an Okta user profile attribute, just reference <code class="highlighter-rouge">user</code> and specify the attribute variable name.  </p>
 
 <table>
   <thead>
@@ -536,6 +536,8 @@
 
 <h3 id="conversion-functions">Conversion Functions</h3>
 
+<h5 id="data-conversion-functions">Data Conversion Functions</h5>
+
 <table>
   <thead>
     <tr>
@@ -580,6 +582,51 @@
 
 <p><strong>Note:</strong>  Convert.toInt(double) rounds the passed numeric value either up or down to the nearest integer. Be sure to consider
 integer type range limitations when converting from a number to an integer with this function.</p>
+
+<h5 id="country-code-conversion-functions">Country Code Conversion Functions</h5>
+
+<p>These functions convert between ISO 3166-1 2-character country codes (Alpha 2), 3-character country codes (Alpha 3), numeric country codes, and full ISO country names.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Function</th>
+      <th>Return Type</th>
+      <th>Example</th>
+      <th>Output</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">Iso3166Convert.toAlpha2(string)</code></td>
+      <td>String</td>
+      <td><code class="highlighter-rouge">Iso3166Convert.toAlpha2("IND")</code></td>
+      <td>“IN”</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Iso3166Convert.toAlpha3(string)</code></td>
+      <td>String</td>
+      <td><code class="highlighter-rouge">Iso3166Convert.toAlpha3("840")</code></td>
+      <td>“USA”</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Iso3166Convert.toNumeric(string)</code></td>
+      <td>String</td>
+      <td><code class="highlighter-rouge">Iso3166Convert.toNumeric("USA")</code></td>
+      <td>“840”</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Iso3166Convert.toName(string)</code></td>
+      <td>String</td>
+      <td><code class="highlighter-rouge">Iso3166Convert.toString("IN")</code></td>
+      <td>“INDIA”</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Note:</strong>  All these functions take ISO 3166-1 2-character country codes (Alpha 2), 3-character country codes (Alpha 3), and numeric country codes as input. The function determines the input type and returns the output is in the format specified by the function name.</p>
+
+<p>For more information on these codes, see the <a href="https://www.iso.org/obp/ui/#search/code/">ISO 3166-1 online lookup tool</a>.</p>
 
 <h3 id="group-functions">Group Functions</h3>
 
@@ -646,7 +693,7 @@ integer type range limitations when converting from a number to an integer with 
   </thead>
   <tbody>
     <tr>
-      <td>Time.now</td>
+      <td><code class="highlighter-rouge">Time.now</code></td>
       <td>(String timeZoneId, String format)</td>
       <td>String</td>
       <td><code class="highlighter-rouge">Time.now()</code></td>
@@ -666,11 +713,54 @@ integer type range limitations when converting from a number to an integer with 
       <td><code class="highlighter-rouge">Time.now("EST", "YYYY-MM-dd HH:mm:ss")</code></td>
       <td>2015-07-31 13:36:48 (Specified time zone and format, military time)</td>
     </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Time.fromWindowsToIso8601</code></td>
+      <td>(String time)</td>
+      <td>String</td>
+      <td>Windows timestamp time as a string (Windows/LDAP timestamp doc)</td>
+      <td>The passed-in time expressed in ISO 8601 format (specifically the RFC 3339 subset of the ISO standard).</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Time.fromUnixToIso8601</code></td>
+      <td>(String time)</td>
+      <td>String</td>
+      <td>Unix timestamp time as a string (Unix timestamp reference)</td>
+      <td>The passed-in time expressed in ISO 8601 format (specifically the RFC 3339 subset of the ISO standard).</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Time.fromStringToIso8601</code></td>
+      <td>(String time, String format)</td>
+      <td>String</td>
+      <td>Timestamp time in a human-readable yet machine-parseable arbitrary format format (as defined by Joda time pattern)</td>
+      <td>The passed-in time expressed in ISO 8601 format (specifically the RFC 3339 subset of the ISO standard).</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Time.fromIso8601ToWindows</code></td>
+      <td>(String time)</td>
+      <td>String</td>
+      <td>ISO 8601 timestamp time as a string</td>
+      <td>The passed-in time expressed in Windows timestamp format.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Time.fromIso8601ToUnix</code></td>
+      <td>(String time)</td>
+      <td>String</td>
+      <td>ISO 8601 timestamp time as a string</td>
+      <td>The passed-in time expressed in Unix timestamp format.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Time.fromIso8601ToString</code></td>
+      <td>(String time, String format)</td>
+      <td>String</td>
+      <td>ISO 8601 timestamp time, to convert to format using the same Joda time format semantics as fromStringToIso8601</td>
+      <td>The passed-in time expressed informat format.</td>
+    </tr>
   </tbody>
 </table>
 
 <blockquote>
-  <p>Both input parameters are optional. The time zone ID supports both new and old style formats, listed below. The third example shows how to specify the military time format.</p>
+  <p>Both input parameters are optional for the Time.now function. The time zone ID supports both new and old style formats, listed below. The third example for 
+the Time.now function shows how to specify the military time format.</p>
 </blockquote>
 
 <h5 id="time-zone-ids">Time Zone IDs</h5>
