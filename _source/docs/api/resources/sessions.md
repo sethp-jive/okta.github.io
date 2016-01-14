@@ -412,7 +412,7 @@ HTTP/1.1 204 No Content
 ~~~
 
 
-#### Get session for current user
+#### Get Current Session
 {:.api .api-operation}
 
 <span class="api-uri-template api-uri-get"><span class="api-label">GET</span> /sessions/me</span>
@@ -435,6 +435,20 @@ curl -v -X GET \
 
 ~~~ json
 {
+    "amr": [
+        "pwd"
+    ],
+    "expiresAt": "2016-01-03T09:13:17.000Z",
+    "id": "012a34BCDeFGhi56jklMNO_pQ",
+    "idp": {
+        "id": "01a2bcdef3GHIJKLMNOP",
+        "type": "OKTA"
+    },
+    "lastFactorVerification": "2015-10-28T23:40:53.000Z",
+    "lastPasswordVerification": "2016-01-03T07:02:00.000Z",
+    "mfaActive": true,
+    "status": "ACTIVE",
+    "userId": "00u0abcdefGHIJKLMNOP",
     "_links": {
         "refresh": {
             "hints": {
@@ -461,23 +475,9 @@ curl -v -X GET \
                 ]
             },
             "href": "https://example.okta.com/api/v1/users/me",
-            "name": "Isaac Brock",
+            "name": "Isaac Brock"
         }
-    },
-    "amr": [
-        "pwd"
-    ],
-    "expiresAt": "2016-01-03T09:13:17.000Z",
-    "id": "012a34BCDeFGhi56jklMNO_pQ",
-    "idp": {
-        "id": "01a2bcdef3GHIJKLMNOP",
-        "type": "OKTA"
-    },
-    "lastFactorVerification": "2015-10-28T23:40:53.000Z",
-    "lastPasswordVerification": "2016-01-03T07:02:00.000Z",
-    "mfaActive": true,
-    "status": "ACTIVE",
-    "userId": "00u0abcdefGHIJKLMNOP"
+    }
 }
 ~~~
 
