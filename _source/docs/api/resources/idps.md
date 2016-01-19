@@ -444,7 +444,7 @@ Federation trust credentials for verifying assertions from the IdP
 | Property | Description                                                                                           | DataType | Nullable | Readonly | MinLength | MaxLength | Validation                                 |
 | -------- | ----------------------------------------------------------------------------------------------------- | -------- | -------- | -------- | --------- | --------- | ------------------------------------------ |
 | issuer   | URI that identifies the issuer (IdP) of a SAML `<SAMLResponse>` message `<Assertion>` element         | String   | FALSE    | FALSE    | 1         | 1024      | [URI](https://tools.ietf.org/html/rfc3986) |
-| audience | URI that identifies the target Okta IdP instance (SP) for an `<Assertion>`                            | String   | FALSE    | FALSE    | 1         | 1024      | [URI](https://tools.ietf.org/html/rfc3986) |
+| audience | URI that identifies the target Okta IdP instance (SP) for an `<Assertion>`                            | String   | TRUE     | FALSE    | 1         | 1024      | [URI](https://tools.ietf.org/html/rfc3986) |
 | kid      | [Key ID](#identity-provider-key-store-operations) reference to the IdP's X.509 signature certificate  | String   | FALSE    | FALSE    | 36        | 36        | Valid IdP Key ID reference                 |
 |----------+-------------------------------------------------------------------------------------------------------+----------+----------+----------+-----------+-----------+--------------------------------------------|
 
