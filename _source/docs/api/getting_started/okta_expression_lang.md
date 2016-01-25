@@ -29,6 +29,14 @@ Syntax  | Definitions | Examples
 `$appuser.$attribute` | `$appuser` explicit reference to specific app<br>`$attribute` the attribute variable name | zendesk.firstName<br>active_directory.managerUpn<br>google_apps.email
 `appuser.$attribute` | `appuser` implicit reference to in-context app<br>`$attribute` the attribute variable name | appuser.firstName
 
+###IdP user profile
+In addition to an Okta user profile, some users have separate IdP user profiles for their external Identity Provider. These IdP user profiles are used to store identity provider specific information about a user, such as how to transform an external user's username into the equivalent Okta username. To reference an IdP user profile attribute, specify the identity provider variable and the corresponding attribute variable for that identity providers IdP user profile. This profile is only available when specifying the username transform used to generate an Okta username for the IdP user.
+
+Syntax                | Definitions                                                                                | Examples
+----------------------|--------------------------------------------------------------------------------------------|------------
+`idpuser.$attribute`  | `idpuser` implicit reference to in-context IdP<br>`$attribute` the attribute variable name | idpuser.firstName
+
+
 > With Universal Directory, there are about 30 attributes in the base Okta profile and any number of custom attributes can be added.  All App user profiles have a username attribute and possibly others depending on the application.   To find a full list of Okta user and App user attributes and their variable names, go to People > Profile Editor.  If you're not yet using Universal Directory, contact your Support or Professional Services team.
 
 ## Referencing Application and Organization Properties
